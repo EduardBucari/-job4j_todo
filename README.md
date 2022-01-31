@@ -9,3 +9,7 @@
 В данном проекте применены технологии: Hibernate, Bootstrap, Servlet, шаблон MVC, PostgreSQL, H2, JavaScript, AJAX, JSON
 
 Проект разворачивается на сервере Apache Tomcat. Все данные сохраняются в PostgreSQL или H2 через Hibernate
+![alt text](https://github.com/EduardBucari/-job4j_todo/blob/master/images/todo1.PNG)
+![alt text](https://github.com/EduardBucari/-job4j_todo/blob/master/images/todo2.PNG)
+![alt text](https://github.com/EduardBucari/-job4j_todo/blob/master/images/todo3.PNG)
+![alt text](https://github.com/EduardBucari/-job4j_todo/blob/master/images/todo4.PNG)
