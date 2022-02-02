@@ -6,3 +6,10 @@ CREATE TABLE if not exists item (
    done BOOLEAN,
    user_id int not null references user(id)
 );
+
+CREATE TABLE if not exists user (
+   id SERIAL PRIMARY KEY,
+   email TEXT UNIQUE,
+   name TEXT,
+   password TEXT
+);

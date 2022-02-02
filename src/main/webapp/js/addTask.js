@@ -1,16 +1,17 @@
 function addTask() {
-    if (validate()) {
+    if (validateAddTask()) {
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8081/todo/addTask.do',
-            data: JSON.stringify({
+            data: {
                 task: $('#task').val(),
-                description: $('#description').val()
-            }),
-            dataType: 'json'
+                description: $('#description').val(),
+                userEmail: $('#userEmail').val()
+            },
+            dataType: 'html'
         }).done(function (data) {
             document.forms.namedItem('form').reset();
-            getTasks()
+            getTasks();
         }).fail(function (err) {
             console.log(err);
         });

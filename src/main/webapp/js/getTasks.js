@@ -25,6 +25,9 @@ function getTasks() {
                 row += '<td>';
                 row += item.description;
                 row += '</td>';
+                row += '<td>';
+                row += item.user.name;
+                row += '</td>';
                 row += '</tr>';
             }
         }

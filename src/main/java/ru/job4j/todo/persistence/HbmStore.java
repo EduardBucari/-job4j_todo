@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 import ru.job4j.todo.model.Item;
+import ru.job4j.todo.model.User;
 
 import java.util.List;
 import java.util.function.Function;
@@ -29,7 +30,7 @@ public class HbmStore implements Store, AutoCloseable {
 
 
     @Override
-    public Item add(Item item) {
+    public Item addTask(Item item) {
         this.tx(
                 session -> session.save(item)
         );
@@ -37,7 +38,7 @@ public class HbmStore implements Store, AutoCloseable {
     }
 
     @Override
-    public void update(int id, boolean done) {
+    public void updateTask(int id, boolean done) {
        this.tx(
                session -> {
                    String hql = "update ru.job4j.todo.model.Item i set i.done= :done where i.id = :id";
@@ -50,10 +51,29 @@ public class HbmStore implements Store, AutoCloseable {
     }
 
     @Override
-    public List<Item> findAll() {
+    public List<Item> findAllTasks() {
         return this.tx(
                 session -> session.createQuery("from ru.job4j.todo.model.Item").list()
         );
+    }
+
+    @Override
+    public User addUser(User user) {
+        this.tx(
+                session -> session.save(user)
+        );
+        return user;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return this.tx(
+                session -> {
+                    String hql = "from ru.job4j.todo.model.User where email = :email";
+                    Query hqlQuery = session.createQuery(hql);
+                    hqlQuery.setParameter("email", email);
+                    return (User) hqlQuery.uniqueResult();
+                });
     }
 
     private <T> T tx(final Function<Session, T> command) {

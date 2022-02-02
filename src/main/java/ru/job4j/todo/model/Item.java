@@ -14,13 +14,19 @@ public class Item {
     private String description;
     private LocalDate created = LocalDate.now();
     private boolean done = false;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Item() {
     }
 
-    public Item(String task, String description) {
-        this.task = task;
-        this.description = description;
+    public static Item of(String task, String description, User user) {
+        Item item = new Item();
+        item.task = task;
+        item.description = description;
+        item.user = user;
+        return item;
     }
 
     public int getId() {
@@ -63,6 +69,14 @@ public class Item {
         this.done = done;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -76,12 +90,13 @@ public class Item {
                 && done == item.done
                 && Objects.equals(task, item.task)
                 && Objects.equals(description, item.description)
-                && Objects.equals(created, item.created);
+                && Objects.equals(created, item.created)
+                && Objects.equals(user, item.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, task, description, created, done);
+        return Objects.hash(id, task, description, created, done, user);
     }
 
     @Override
@@ -92,6 +107,7 @@ public class Item {
                 + ", description='" + description + '\''
                 + ", created=" + created
                 + ", done=" + done
+                + ", user=" + user
                 + '}';
     }
 }

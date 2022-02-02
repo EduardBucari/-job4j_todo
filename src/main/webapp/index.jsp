@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -17,7 +18,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
-    <script type="text/javascript" src="js/validate.js"></script>
+    <script type="text/javascript" src="js/validateAddTask.js"></script>
 
     <script type="text/javascript" src="js/addTask.js"></script>
 
@@ -39,7 +40,24 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Новая задача
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        Новая задача
+                    </li>
+                    <c:if test="${user == null}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%= request.getContextPath() %>/login.jsp">Войти</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${user != null}">
+                        <li class="nav-item">
+                            <c:out value="Пользователь: ${user.name}"/>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%= request.getContextPath() %>/logout.do">Выйти</a>
+                        </li>
+                    </c:if>
+                </ul>
             </div>
             <div class="card-body">
                 <form id="form" name="form">
@@ -51,6 +69,7 @@
                         <label for="description">Описание</label>
                         <textarea class="form-control" name="description" id="description" rows="1"></textarea>
                     </div>
+                    <input type="hidden" name="userEmail" id="userEmail" value="<c:out value='${user.email}'/>">
                     <button type="submit" class="btn btn-primary" onclick="addTask()">Добавить</button>
                 </form>
             </div>
@@ -82,6 +101,7 @@
                         <tr>
                             <th>Задача</th>
                             <th>Описание</th>
+                            <th>Автор</th>
                         </tr>
                         </thead>
                         <tbody id="tablerows">

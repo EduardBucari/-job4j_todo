@@ -6,12 +6,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-public class ChangeTaskStatus extends HttpServlet {
+public class AddTaskServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        boolean done = Boolean.parseBoolean(req.getParameter("done"));
-        TodoService.instOf().changeTaskStatus(id, done);
+        String task = req.getParameter("task");
+        String description = req.getParameter("description");
+        String userEmail = req.getParameter("userEmail");
+        TodoService.instOf().addTask(task, description, userEmail);
     }
 }
