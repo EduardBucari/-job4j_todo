@@ -33,6 +33,9 @@ function getTasks() {
                 }
                 row += '</td>';
                 row += '<td>';
+                row += item.created;
+                row += '</td>';
+                row += '<td>';
                 row += item.user.name;
                 row += '</td>';
                 row += '</tr>';

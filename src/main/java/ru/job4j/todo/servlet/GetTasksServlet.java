@@ -12,7 +12,8 @@ import java.nio.charset.StandardCharsets;
 
     public class GetTasksServlet extends HttpServlet {
 
-        private static final Gson GSON = new GsonBuilder().create();
+        private static final Gson GSON = new GsonBuilder()
+                .setDateFormat("dd/MM/yy HH:mm").create();
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
