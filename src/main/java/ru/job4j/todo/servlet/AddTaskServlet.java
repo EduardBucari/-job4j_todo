@@ -13,6 +13,7 @@ public class AddTaskServlet extends HttpServlet {
         String task = req.getParameter("task");
         String description = req.getParameter("description");
         String userEmail = req.getParameter("userEmail");
-        TodoService.instOf().addTask(task, description, userEmail);
+        String[] categories = req.getParameterValues("categories[]");
+        TodoService.instOf().addTask(task, description, userEmail, categories);
     }
 }

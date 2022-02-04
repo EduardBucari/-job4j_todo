@@ -26,6 +26,13 @@ function getTasks() {
                 row += item.description;
                 row += '</td>';
                 row += '<td>';
+                let comma = '';
+                for (i in item.categories) {
+                    row += comma + item.categories[i].name;
+                    comma = ', ';
+                }
+                row += '</td>';
+                row += '<td>';
                 row += item.user.name;
                 row += '</td>';
                 row += '</tr>';

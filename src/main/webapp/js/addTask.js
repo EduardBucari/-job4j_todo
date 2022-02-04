@@ -6,11 +6,12 @@ function addTask() {
             data: {
                 task: $('#task').val(),
                 description: $('#description').val(),
-                userEmail: $('#userEmail').val()
-            },
-            dataType: 'html'
+                userEmail: $('#userEmail').val(),
+                'categories[]': $('#categories').val()
+            }
         }).done(function (data) {
             document.forms.namedItem('form').reset();
+            $('#categories').html($('#categories').val());
             getTasks();
         }).fail(function (err) {
             console.log(err);

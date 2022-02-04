@@ -6,6 +6,9 @@ function validateAddTask() {
     if ($('#description').val() === '') {
         result = result + 'Введите описание задачи' + '\n';
     }
+    if ($('#categories').val().length === 0) {
+        result = result + 'Выберите хотя бы одну категорию' + '\n';
+    }
     if (result != '') {
         alert(result);
         return false

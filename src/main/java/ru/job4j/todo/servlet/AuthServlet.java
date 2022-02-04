@@ -17,6 +17,7 @@ public class AuthServlet extends HttpServlet {
         if (dbUser != null && dbUser.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
             sc.setAttribute("user", dbUser);
+            sc.setAttribute("categories", HbmStore.instOf().findAllCategories());
             resp.sendRedirect(req.getContextPath());
         } else {
             req.setAttribute("error", "Не верный email или пароль");

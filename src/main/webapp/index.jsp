@@ -69,6 +69,16 @@
                         <label for="description">Описание</label>
                         <textarea class="form-control" name="description" id="description" rows="1"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="categories">Категория</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="categories" id="categories" multiple>
+                                <c:forEach items="${categories}" var="category">
+                                    <option value='<c:out value="${category.id}"/>'><c:out value="${category.name}"/></option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
                     <input type="hidden" name="userEmail" id="userEmail" value="<c:out value='${user.email}'/>">
                     <button type="submit" class="btn btn-primary" onclick="addTask()">Добавить</button>
                 </form>
@@ -101,6 +111,7 @@
                         <tr>
                             <th>Задача</th>
                             <th>Описание</th>
+                            <th>Категория</th>
                             <th>Автор</th>
                         </tr>
                         </thead>
@@ -111,6 +122,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

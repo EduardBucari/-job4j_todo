@@ -1,5 +1,6 @@
 package ru.job4j.todo.persistence;
 
+import ru.job4j.todo.model.Category;
 import ru.job4j.todo.model.Item;
 import ru.job4j.todo.model.User;
 
@@ -12,6 +13,8 @@ public interface Store extends AutoCloseable {
     void updateTask(int id, boolean done);
 
     List<Item> findAllTasks();
+
+    List<Category> findAllCategories();
 
     User addUser(User user);
 
